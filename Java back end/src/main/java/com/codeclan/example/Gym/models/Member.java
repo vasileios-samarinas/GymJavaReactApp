@@ -16,13 +16,13 @@ public class Member {
     @Column(name = "lastName")
     private String lastName;
 
-    @Column(name = "goal")
-    private String goal;
+    @Column(name = "membership")
+    private MemberShip memberShip;
 
-    public Member(String firstName, String lastName, String goal) {
+    public Member(String firstName, String lastName, MemberShip memberShip) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.goal = goal;
+        this.memberShip = memberShip;
     }
 
     public Member(){
@@ -53,11 +53,11 @@ public class Member {
         this.lastName = lastName;
     }
 
-    public String getGoal() {
-        return goal;
+    public MemberShip getMemberShip() {
+        return memberShip;
     }
 
-    public void setGoal(String goal) {
-        this.goal = goal;
+    public void setMemberShip(MemberShip memberShip) {
+        this.memberShip = memberShip;
     }
 }

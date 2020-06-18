@@ -22,8 +22,7 @@ public class Room {
         this.capacity = capacity;
     }
 
-    public Room(){
-    }
+    public Room(){}
 
     public Long getId() {
         return id;

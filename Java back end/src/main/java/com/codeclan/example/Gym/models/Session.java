@@ -1,8 +1,8 @@
 package com.codeclan.example.Gym.models;
-
-
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "sessions")
@@ -25,13 +25,24 @@ public class Session {
     @Column(name = "room")
     private Room room;
 
-    public Session(String type, Timestamp start_time, int duration, Room room) {
+    @Column(name = "trainer")
+    private Trainer trainer;
+
+    @ManyToOne
+    @JoinColumn(name="member_id", nullable = false)
+    private List<Member> members;
+
+
+    public Session(String type, Timestamp start_time, int duration, Room room, Trainer trainer) {
         this.type = type;
         this.start_time = start_time;
         this.duration = duration;
         this.room = room;
+        this.trainer = trainer;
+        this.members = new ArrayList<>();
     }
 
+    public Session(){}
 
     public Long getId() {
         return id;
@@ -71,5 +82,21 @@ public class Session {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public Trainer getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
     }
 }

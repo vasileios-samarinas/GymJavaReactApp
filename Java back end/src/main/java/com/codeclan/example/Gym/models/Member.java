@@ -1,5 +1,9 @@
 package com.codeclan.example.Gym.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "members")
@@ -16,18 +20,22 @@ public class Member {
     @Column(name = "lastName")
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "membership")
     private MemberShip memberShip;
+
+    @JsonIgnore
+    @OneToMany
+    private List<Session> sessions;
 
     public Member(String firstName, String lastName, MemberShip memberShip) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.memberShip = memberShip;
+        this.sessions = new ArrayList<>();
     }
 
-    public Member(){
-
-    }
+    public Member(){}
 
     public Long getId() {
         return id;
@@ -59,5 +67,13 @@ public class Member {
 
     public void setMemberShip(MemberShip memberShip) {
         this.memberShip = memberShip;
+    }
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
     }
 }

@@ -16,7 +16,7 @@ public class MemberController {
     @Autowired
     MemberRepository memberRepository;
 
-//  READ - ALL MEMBERS
+//  READ - GET ALL MEMBERS
     @GetMapping
     public ResponseEntity<List<Member>>getAllMembers(){
         return new ResponseEntity<>(memberRepository.findAll(), HttpStatus.OK);
@@ -39,6 +39,13 @@ public class MemberController {
     public ResponseEntity<Member> putMember(@RequestBody Member member){
         memberRepository.save(member);
         return new ResponseEntity<>(member, HttpStatus.OK);
+    }
+
+//  DELETE ONE MEMBER
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity<Long> deleteMember(@PathVariable Long id){
+        memberRepository.deleteById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
 

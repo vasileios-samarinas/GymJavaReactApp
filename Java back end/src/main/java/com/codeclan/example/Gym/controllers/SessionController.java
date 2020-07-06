@@ -1,5 +1,4 @@
 package com.codeclan.example.Gym.controllers;
-import com.codeclan.example.Gym.models.Room;
 import com.codeclan.example.Gym.models.Session;
 import com.codeclan.example.Gym.repositories.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;

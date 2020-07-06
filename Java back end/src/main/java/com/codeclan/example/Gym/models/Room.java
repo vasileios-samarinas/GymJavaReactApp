@@ -1,6 +1,10 @@
 package com.codeclan.example.Gym.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "rooms")
@@ -17,9 +21,15 @@ public class Room {
     @Column(name = "capacity")
     private int capacity;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "room")
+    private List<Session> sessions;
+
+
     public Room(String roomName, int capacity) {
         this.roomName = roomName;
         this.capacity = capacity;
+        this.sessions = new ArrayList<>();
     }
 
     public Room(){}
@@ -46,5 +56,13 @@ public class Room {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
     }
 }

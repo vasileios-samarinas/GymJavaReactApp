@@ -1,4 +1,5 @@
 package com.codeclan.example.Gym.models;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -7,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "members")
-
 public class Member {
 
     @Id
@@ -21,11 +21,23 @@ public class Member {
     private String lastName;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "membership")
+    @Column
     private MemberShip memberShip;
 
     @JsonIgnore
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name = "sessions_members",
+            joinColumns = { @JoinColumn(
+                    name = "member_id",
+                    nullable = false,
+                    updatable = false)
+            },
+            inverseJoinColumns = { @JoinColumn(
+                    name = "session_id",
+                    nullable = false,
+                    updatable = false)
+            })
     private List<Session> sessions;
 
     public Member(String firstName, String lastName, MemberShip memberShip) {
@@ -76,4 +88,11 @@ public class Member {
     public void setSessions(List<Session> sessions) {
         this.sessions = sessions;
     }
+
+    public void addSessionToMember(Session session){
+        this.sessions.add(session);
+    }
+
+
+
 }

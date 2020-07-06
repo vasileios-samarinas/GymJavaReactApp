@@ -1,6 +1,8 @@
 package com.codeclan.example.Gym.models;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,23 +19,39 @@ public class Session {
     private String type;
 
     @Column(name = "start_time")
-    private Timestamp start_time;
+    private String start_time;
 
     @Column(name = "duration")
     private int duration;
 
-    @Column(name = "room")
-    private Room room;
-
-    @Column(name = "trainer")
-    private Trainer trainer;
 
     @ManyToOne
-    @JoinColumn(name="member_id", nullable = false)
+    @JoinColumn(name = "room_id", nullable = false)
+    private Room room;
+
+    @ManyToOne
+    @JoinColumn(name = "trainer_id", nullable = false)
+    private Trainer trainer;
+
+    @JsonBackReference
+    @ManyToMany
+    @JoinTable(
+            name = "sessions_members",
+            joinColumns = { @JoinColumn(
+                    name = "session_id",
+                    nullable = false,
+                    updatable = false)
+            },
+            inverseJoinColumns = { @JoinColumn(
+                    name = "member_id",
+                    nullable = false,
+                    updatable = false)
+            }
+    )
     private List<Member> members;
 
 
-    public Session(String type, Timestamp start_time, int duration, Room room, Trainer trainer) {
+    public Session(String type, String start_time, int duration, Room room, Trainer trainer) {
         this.type = type;
         this.start_time = start_time;
         this.duration = duration;
@@ -60,11 +78,11 @@ public class Session {
         this.type = type;
     }
 
-    public Timestamp getStart_time() {
+    public String getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(Timestamp start_time) {
+    public void setStart_time(String start_time) {
         this.start_time = start_time;
     }
 
@@ -99,4 +117,7 @@ public class Session {
     public void setMembers(List<Member> members) {
         this.members = members;
     }
+
+
+
 }

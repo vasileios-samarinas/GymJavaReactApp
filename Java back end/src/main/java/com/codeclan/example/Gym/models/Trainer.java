@@ -2,6 +2,8 @@ package com.codeclan.example.Gym.models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -17,9 +19,13 @@ public class Trainer {
     @Column
     private String lastName;
 
+    @OneToMany(mappedBy = "trainer", fetch = FetchType.LAZY)
+    private List<Session> sessions;
+
     public Trainer(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.sessions = new ArrayList<>();
     }
 
     public Trainer(){}
@@ -46,5 +52,13 @@ public class Trainer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
     }
 }

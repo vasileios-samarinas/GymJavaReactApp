@@ -1,7 +1,4 @@
 package com.codeclan.example.Gym.controllers;
-
-
-import com.codeclan.example.Gym.models.Member;
 import com.codeclan.example.Gym.models.Room;
 import com.codeclan.example.Gym.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +41,10 @@ public class RoomController {
         return new ResponseEntity(room, HttpStatus.CREATED);
     }
 
+//  DELETE ONE ROOM
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Room> deleteRoom(@PathVariable Long id){
+        roomRepository.deleteById(id);
+        return new ResponseEntity(id,HttpStatus.OK);
+    }
 }

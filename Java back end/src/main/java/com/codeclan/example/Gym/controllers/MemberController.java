@@ -1,5 +1,4 @@
 package com.codeclan.example.Gym.controllers;
-
 import com.codeclan.example.Gym.models.Member;
 import com.codeclan.example.Gym.repositories.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;

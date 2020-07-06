@@ -7,10 +7,7 @@ import com.codeclan.example.Gym.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,5 +28,12 @@ public class RoomController {
     @GetMapping(value="/{id}")
     public ResponseEntity<List<Room>>getRoom(@PathVariable Long id){
         return new ResponseEntity(roomRepository.findById(id), HttpStatus.OK);
+    }
+
+//  CREATE ONE ROOM
+    @PostMapping
+    public ResponseEntity<Room> postRoom(@RequestBody Room room){
+        roomRepository.save(room);
+        return new ResponseEntity(room, HttpStatus.CREATED);
     }
 }

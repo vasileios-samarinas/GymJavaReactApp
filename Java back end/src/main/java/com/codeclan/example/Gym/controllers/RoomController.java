@@ -36,4 +36,12 @@ public class RoomController {
         roomRepository.save(room);
         return new ResponseEntity(room, HttpStatus.CREATED);
     }
+
+//  UPDATE ONE ROOM
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Room> putRoom(@RequestBody Room room){
+        roomRepository.save(room);
+        return new ResponseEntity(room, HttpStatus.CREATED);
+    }
+
 }

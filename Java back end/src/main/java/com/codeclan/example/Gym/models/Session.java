@@ -24,16 +24,17 @@ public class Session {
     @Column(name = "duration")
     private int duration;
 
-
+//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
+//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "trainer_id", nullable = false)
     private Trainer trainer;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "sessions_members",

@@ -32,7 +32,17 @@ public class DataLoader implements ApplicationRunner {
         Member member1 = new Member("John","Mike",MemberShip.STUDENT);
         memberRepository.save(member1);
 
-        Member member2 = new Member("John","Mikeal",MemberShip.NICE);
+        Member member2 = new Member("John","Mikeal",MemberShip.STANDARD);
         memberRepository.save(member2);
+
+        Trainer trainer1 = new Trainer("Michael","Tyson");
+        trainerRepository.save(trainer1);
+
+        Room room1 = new Room("Spinning Room",20);
+        roomRepository.save(room1);
+
+        Session session1 = new Session("Burn Fat","17:00",45,room1,trainer1);
+        sessionRepository.save(session1);
+
     }
 }

@@ -1,6 +1,8 @@
 package com.codeclan.example.Gym.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,7 @@ public class Trainer {
     @Column
     private String lastName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "trainer", fetch = FetchType.LAZY)
     private List<Session> sessions;
 

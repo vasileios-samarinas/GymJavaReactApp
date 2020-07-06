@@ -4,7 +4,7 @@ package com.codeclan.example.Gym.models;
 public enum MemberShip {
 
     STUDENT("Student Account"),
-    NICE("Default Account");
+    STANDARD("Default Account");
 
     private final String memberShip;
 

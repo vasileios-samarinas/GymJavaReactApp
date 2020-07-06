@@ -21,6 +21,7 @@ public class MemberController {
     public ResponseEntity<List<Member>>getAllMembers(){
         return new ResponseEntity<>(memberRepository.findAll(), HttpStatus.OK);
     }
+
 //  SHOW ONE MEMBER
     @GetMapping(value="/{id}")
     public ResponseEntity<Member> getMember(@PathVariable Long id) {
